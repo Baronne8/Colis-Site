@@ -1,0 +1,106 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accueil - Colis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #ffffff; color: #000; }
+    .btn-vert { background-color: #28a745; color: white; }
+    .footer { background: #28a745; color: white; padding: 20px; text-align: center; }
+    #eligibility-form, #congrats-message { display: none; }
+    #privacy-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8); color: white; display: flex;
+      justify-content: center; align-items: center; z-index: 9999;
+      flex-direction: column; padding: 20px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">CGI Investissent</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarNav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">Qui sommes-nous</a></li>
+        <li class="nav-item"><a href="recovery.html" class="nav-link">Comment récupérer son colis</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Carrousel -->
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active"><img src="000..webp" class="d-block w-100" alt="1" /></div>
+    <div class="carousel-item"><img src="téléchargement.jpg" class="d-block w-100" alt="2" /></div>
+    <div class="carousel-item"><img src="ncc0.jpg" class="d-block w-100" alt="3" /></div>
+    <div class="carousel-item"><img src="ccn0.jpg" class="d-block w-100" alt="4" /></div>
+    <div class="carousel-item"><img src="110m.jpg" class="d-block w-100" alt="5" /></div>
+    <div class="carousel-item"><img src="a2ml.jpeg" class="d-block w-100" alt="6" /></div>
+  </div>
+</div>
+
+<!-- Section Vérification d’éligibilité -->
+<div class="container mt-5 text-center">
+  <button id="checkBtn" class="btn btn-vert">Vérifiez si vous êtes éligible pour recevoir un colis</button>
+
+  <form id="eligibility-form" class="mt-3">
+    <input type="text" id="prenom" class="form-control mb-2" placeholder="Prénom" required />
+    <input type="text" id="nom" class="form-control mb-2" placeholder="Nom" required />
+    <button type="submit" class="btn btn-success">Soumettre</button>
+  </form>
+
+  <div id="congrats-message" class="mt-4"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer mt-5">CGI Investissent. Votre Meilleure Option.</footer>
+
+<!-- Politique de confidentialité -->
+<div id="privacy-overlay">
+  <h2>Politique de confidentialité</h2>
+  <p>En poursuivant votre navigation, vous acceptez notre Politique de confidentialité <br> et acceptez payer les taxes que requiert CGI Investissent pour vos livraison et commandes.</p>
+  <button id="acceptPrivacy" class="btn btn-vert mt-3">Accepter et continuer</button>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const checkBtn = document.getElementById('checkBtn');
+  const form = document.getElementById('eligibility-form');
+  const congrats = document.getElementById('congrats-message');
+  const overlay = document.getElementById('privacy-overlay');
+  const acceptPrivacy = document.getElementById('acceptPrivacy');
+
+  checkBtn.addEventListener('click', () => {
+    checkBtn.style.display = 'none';
+    form.style.display = 'block';
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const prenom = document.getElementById('prenom').value;
+    const nom = document.getElementById('nom').value;
+    form.style.display = 'none';
+    congrats.innerHTML = `<h4>Félicitations ${prenom} ${nom}, vous avez été sélectionné par CGI Investissement pour reçevoir une somme de 200000 Euros et un Iphone 17.</h4>
+      <a href="https://wa.me/NUMERODENTREPRISE" class="btn btn-success mt-3">Réclamer mon colis maintenant</a>`;
+    congrats.style.display = 'block';
+  });
+
+  acceptPrivacy.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+</script>
+</body>
+</html>
